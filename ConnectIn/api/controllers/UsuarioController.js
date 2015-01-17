@@ -15,6 +15,7 @@ module.exports = {
 		Usuario.create({email:username,password:password}).exec(function createCB(err,created) {
   			if (created) {
   				console.log('Created user with name ' + created.email);
+				console.log(created);
   				return created;
   			} else {
   				console.log('Error creating user');

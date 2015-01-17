@@ -11,6 +11,9 @@
 
 module.exports.bootstrap = function(cb) {
 
+  Usuario.create({email:"alumno@alumno.com", password: "abcde", rol:'Usuario'}).exec(function createCB (err, user) {
+    if (!err) console.log('Created initial user');
+  });
   // It's very important to trigger this callback method when you are finished
   // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
   cb();

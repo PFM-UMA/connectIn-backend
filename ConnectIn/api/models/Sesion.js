@@ -14,9 +14,9 @@ module.exports = {
       required:true
   	},
 
-  	id: {
+  	sesion_id: {
   		type : 'string',
   		required : true
   	}
-  },
+  }
 };

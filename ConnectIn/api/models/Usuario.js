@@ -15,46 +15,46 @@ module.exports = {
 
   attributes: {
 
-  	email: {
-  		type : 'email',
-  		unique : true,
-  	},
+    email: {
+      type : 'email',
+      unique : true,
+    },
 
-  	password: {
-  		type : 'string',
-  		required : true
-  	},
+    password: {
+      type : 'string',
+      required : true
+    },
 
-  	name: {
-  		type : 'string',
-  		//required : true
-  	},
+    rol: {
+      type : 'string',
+      enum : ['Administrador','Usuario'],
+      defaultsTo : 'Usuario',
+      required : true
+    },
+    
+    name: {
+      type : 'string',
+      //required : true
+    },
 
-  	surname: {
-  		type : 'string',
-  		//required : true	
-  	}, 
+    surname: {
+      type : 'string',
+      //required : true	
+     }, 
 
-  	toJSON: function () {
-   	  var usuario = this.toObject();
-	  delete usuario.password;
-	  return usuario;
-  	}
+    toJSON: function () {
+      var usuario = this.toObject();
+      delete usuario.password;
+      return usuario;
+    }
 
   },
 
   beforeCreate: function(user, cb) {
-    bcrypt.genSalt(10, function(err, salt) {
-      bcrypt.hash(user.password, salt, function(err, hash) {
-        if (err) {
-          console.log(err);
-          cb(err);
-        }else{
-          user.password = hash;
-          cb(null, user);
-        }
-      });
-    });
+    var salt = bcrypt.genSaltSync(10);
+    var hash = bcrypt.hashSync(user.password, salt);
+    user.password = hash;
+    cb(null, user);
   }
 
 };

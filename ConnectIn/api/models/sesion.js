@@ -11,12 +11,12 @@ module.exports = {
   	email: {
   		type : 'email',
   		unique : true,
-      required:true,
+      required:true
   	},
 
   	id: {
   		type : 'string',
   		required : true
-  	},
+  	}
   },
 };

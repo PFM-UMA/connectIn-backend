@@ -49,10 +49,7 @@ module.exports = {
 		      res.json({ error:'DB error'},500);
 		    } else {
 		      console.log('Logged in');
-		      req.session.sesion_id = user.password;
-		      req.session.email = user.email;
-		      req.session.rol = user.rol;
-		      res.json(user);
+		      res.json({ id:user.password,email:user.email,rol:user.rol });
 		    }
 		   });
 		} else {

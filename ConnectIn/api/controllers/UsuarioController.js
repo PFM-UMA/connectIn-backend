@@ -16,7 +16,7 @@ module.exports = {
   			if (created) {
   				console.log('Created user with name ' + created.email);
 				console.log(created);
-  				return created;
+  				return res.json(created);
   			} else {
   				console.log('Error creating user');
   				return res.badRequest();
@@ -49,6 +49,7 @@ module.exports = {
 		      res.json({ error:'DB error'},500);
 		    } else {
 		      console.log('Logged in');
+		      console.log('{ id:'+user.password+',email:'+user.email+',rol:'+user.rol+'}');
 		      res.json({ id:user.password,email:user.email,rol:user.rol });
 		    }
 		   });

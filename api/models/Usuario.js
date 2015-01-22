@@ -16,6 +16,7 @@ module.exports = {
   attributes: {
 
     email: {
+      primaryKey: true,
       type : 'email',
       unique : true
     },
@@ -41,6 +42,10 @@ module.exports = {
       type : 'string',
       //required : true	
      }, 
+
+    profile: {
+      model:'Perfil'
+    },
 
     toJSON: function () {
       var usuario = this.toObject();

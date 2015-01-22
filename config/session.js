@@ -67,11 +67,13 @@ module.exports.session = {
   *                                                                          *
   ***************************************************************************/
 
-  // adapter: 'mongo',
-  // host: 'localhost',
-  // port: 27017,
-  // db: 'sails',
-  // collection: 'sessions',
+  adapter: 'mongo',
+  host: process.env.OPENSHIFT_MONGODB_DB_HOST || '127.0.0.1',
+  port: process.env.OPENSHIFT_MONGODB_DB_PORT || 27017,
+  db: process.env.OPENSHIFT_APP_NAME || 'db',
+  username: process.env.OPENSHIFT_MONGODB_DB_USERNAME || '',
+  password: process.env.OPENSHIFT_MONGODB_DB_PASSWORD || '',
+  collection: 'sessions'
 
   /***************************************************************************
   *                                                                          *

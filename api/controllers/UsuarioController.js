@@ -25,7 +25,7 @@ module.exports = {
 	},
 	
 	signin : function (req, res) {
-	  var bcrypt = require('bcrypt');
+	  var bcrypt = require('bcrypt-nodejs');
 
 	  var username = req.param("username");
 	  var password = req.param("password");

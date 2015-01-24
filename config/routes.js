@@ -34,7 +34,9 @@ module.exports.routes = {
 
   '/': { view: 'homepage' },
   'post /signup' : 'UsuarioController.signup',
-  'post /signin' : 'UsuarioController.signin'
+  'post /signin' : 'UsuarioController.signin',
+  'post /empresa/:CIF' : 'EmpresaController.updateOrCreate',
+  'post /usuario/:email' : 'PerfilController.updateOrCreate'
 
   /***************************************************************************
   *                                                                          *

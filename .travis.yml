@@ -1,6 +1,12 @@
 language: node_js
 node_js:
-  - "0.11"
-  - "0.10"
-  - "0.8"
-  - "0.6"
+- '0.11'
+deploy:
+  provider: openshift
+  user: mbarrientos.cloud@gmail.com
+  password:
+    secure: D2mJ+rnMsCgi/k2wk1bF+y5jy0j6X+T1oEdquhHDYxg0gIiJq9M3tveU1PN+58kP2uh5QiWaSslAYAQWfDclx8D+1ZXNT9Mpp5IjrGjVqqFfaiuxHM6ReC/M+0FMjg2n9FvUsMMH+PFJW/I1CP0pYHQJ8JSP0SVUOERYIDJ1bd4=
+  app: connectinbackend
+  domain: pfmscrum
+  on:
+    repo: PFM-UMA/connectIn-backend

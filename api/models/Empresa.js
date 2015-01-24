@@ -26,7 +26,7 @@ module.exports = {
     
     name: {
       primaryKey: true,
-      type : 'email',
+      type : 'string',
       unique : true,
       required : true
     },
@@ -36,9 +36,8 @@ module.exports = {
       //required : true
     },
     
-    owners:{
-      collection:'Usuario',
-      via: 'empresas'
+    owner:{
+      model:'Usuario'
     }
   }
 };

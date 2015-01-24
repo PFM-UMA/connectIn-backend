@@ -49,8 +49,7 @@ module.exports = {
     
     empresas:{
       collection:'Empresa',
-      via: 'owners',
-      dominant:true
+      via: 'owner'
     },
 
     toJSON: function () {

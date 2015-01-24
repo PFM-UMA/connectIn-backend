@@ -46,6 +46,12 @@ module.exports = {
     profile: {
       model:'Perfil'
     },
+    
+    empresas:{
+      collection:'Empresa',
+      via: 'owners',
+      dominant:true
+    },
 
     toJSON: function () {
       var usuario = this.toObject();

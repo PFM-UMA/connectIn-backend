@@ -19,13 +19,18 @@ module.exports = {
 
   attributes: {
 
-  	name: {
+    email: {
       primaryKey: true,
       type : 'string',
       required : true
     },
 
-    username: {
+    name: {
+      type : 'string',
+      required : true
+    },
+    
+    surname: {
       type : 'string',
       required : true
     },

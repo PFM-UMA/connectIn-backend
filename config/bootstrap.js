@@ -11,8 +11,16 @@
 
 module.exports.bootstrap = function(cb) {
 
-  var experience = '5 años hasta el presente blablablabla';	
+  var perfil = [{email:'alumno@alumno.com',name:"Alumno", surname:"Onmula", age:20}];
+  var usuario = [{email:"alumno@alumno.com", password: "abcde", rol:'Usuario',profile:'alumno@alumno.com',empresas:['1','2']}];
+  var empresa = [{CIF:'1',name:'Empresa de alumno'},{CIF:'2',name:'Empresa de alumno3'}];
+  
+  Empresa.create(empresa).exec(console.log);
+  Perfil.create(perfil).exec(console.log);
+  Usuario.create(usuario).exec(console.log);
 
+  Usuario.findOne('alumno@alumno.com').populate('profile').exec(console.log);
+  /*
   Usuario.create({email:"alumno@alumno.com", password: "abcde", rol:'Usuario'}).exec(function createCB (err, user) {
     if (!err) console.log('Created initial user');
   });
@@ -21,7 +29,7 @@ module.exports.bootstrap = function(cb) {
     	Usuario.update({email:'alumno@alumno.com'},{profile:perfil}).exec(function updateCB (err, updated) {
 
     	});
-    });
+    });*/
   
 
   // It's very important to trigger this callback method when you are finished

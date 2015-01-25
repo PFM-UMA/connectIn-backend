@@ -38,12 +38,12 @@ angular.module('connectIn', [
     .config(['$routeProvider', 'USER_ROLES', function ($routeProvider, USER_ROLES) {
         $routeProvider
             .when('/login', {
-                templateUrl: 'login/login.html',
+                templateUrl: '../pages/login.html',
                 controller: 'LoginCtrl',
                 access: { authorizedRoles: [USER_ROLES.all] }
             })
             .when('/home',{
-                templateUrl: 'home/home.html',
+                templateUrl: '../pages/home.html',
                 controller: 'HomeCtrl',
                 access: { authorizedRoles: [USER_ROLES.user, USER_ROLES.admin] }
             })
@@ -96,7 +96,7 @@ angular.module('connectIn', [
 
         authService.login = function (credentials) {
             return $http
-                .post('http://localhost:1337/signin', credentials)
+                .post('signin', credentials)
                 .then(function (res) {
                     Session.create(res.data.id, res.data.email,
                         res.data.rol);

@@ -40,7 +40,7 @@ angular.module('connectIn.login', ['ngRoute'])
             if (credentials.password != credentials.passwordVerify){
                 alert("Las contraseñas no coinciden");
             }else {
-                $http.post('http://localhost:1337/signup', credentials)
+                $http.post('signup/', credentials)
                     .then(function(res){
                         AuthService.login(credentials).then(
                             function (user) {

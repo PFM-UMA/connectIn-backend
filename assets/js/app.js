@@ -23,28 +23,17 @@ angular.module('connectIn', [
         guest: 'guest'
     })
 
-    .controller('ConnectInController', function ($scope,
-                                                   USER_ROLES,
-                                                   AuthService) {
-        $scope.currentUser = null;
-        $scope.userRoles = USER_ROLES;
-        $scope.isAuthorized = AuthService.isAuthorized;
-
-        $scope.setCurrentUser = function (user) {
-            $scope.currentUser = user;
-        };
-    })
 
     .config(['$routeProvider', 'USER_ROLES', function ($routeProvider, USER_ROLES) {
         $routeProvider
             .when('/login', {
                 templateUrl: '../pages/login.html',
-                controller: 'LoginCtrl',
+                controller: 'LoginController',
                 access: { authorizedRoles: [USER_ROLES.all] }
             })
             .when('/home',{
                 templateUrl: '../pages/home.html',
-                controller: 'HomeCtrl',
+                controller: 'ProfileController',
                 access: { authorizedRoles: [USER_ROLES.user, USER_ROLES.admin] }
             })
             .otherwise({
@@ -117,4 +106,31 @@ angular.module('connectIn', [
         };
 
         return authService;
+    })
+
+    .controller('LoginController', function ($scope, $rootScope, AUTH_EVENTS, USER_ROLES, AuthService) {
+        $scope.credentials = {
+            username: '',
+            password: ''
+        };
+
+        $scope.currentUser = null;
+        $scope.userRoles = USER_ROLES;
+        $scope.isAuthorized = AuthService.isAuthorized;
+
+        $scope.setCurrentUser = function (user) {
+            $scope.currentUser = user;
+        };
+
+        $scope.login = function (credentials) {
+            AuthService.login(credentials).then(
+                function (user) {
+                    // LOGIN SUCCEEDED
+                    $scope.setCurrentUser(user);
+                    $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                }, function () {
+                    // LOGIN FAILED
+                    $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+                });
+        };
     })

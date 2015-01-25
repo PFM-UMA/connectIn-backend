@@ -77,3 +77,58 @@ input {
     background-color: #e1ded1;
     0px solid #ccc
 }
+
+.personal-info {
+    border-style: solid;
+    border-width: 1px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border-color: #c6c2b4;
+    background-color: #e1ded1
+
+}
+
+.personal-info div {
+    padding: 5px;
+}
+
+hr {
+    width: 100%;
+    color: #c6c2b4;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #837D6C;
+}
+
+.comments {
+    background-color: #B2AFA2
+}
+
+.connection-profile {
+    padding: 5px;
+}
+
+.connection-profile img {
+    border-style: solid;
+    border-width: 3px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border-color: #46433a
+}
+
+.connection-profile a {
+    font-size: 22px;
+    vertical-align: middle;
+}
+
+img.avatar {
+    border-style: solid;
+    border-width: 3px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    border-color: #46433a
+}

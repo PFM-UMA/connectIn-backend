@@ -32,7 +32,6 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': { view: 'homepage' },
   'post /signup' : 'UsuarioController.signup',
   'post /signin' : 'UsuarioController.signin',
   'post /empresa/:CIF' : 'EmpresaController.updateOrCreate',

@@ -14,12 +14,12 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="css/blog-post.css">
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap-theme.min.css">
-    <script src="lib/jquery/jquery.min.js"></script>
-    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/blog-post.css">
+
 </head>
 <body>
 
@@ -28,16 +28,59 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+            <a class="navbar-brand" href="#">ConnectIN</a>
+        </div>
+        <div ng-controller="LoginController" class="navbar-collapse collapse" id="navbar-main">
+            <form ng-submit="login(credentials)" ng-hide="currentUser != null"
+                  class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input ng-model="credentials.username" type="text" class="form-control" name="username" placeholder="Usuario">
+                </div>
+                <div class="form-group">
+                    <input ng-model="credentials.password" type="password" class="form-control" name="password" placeholder="Contraseña">
+                </div>
+                <button type="submit" class="btn btn-success">Acceder</button>
+                <br>
+            </form>
+            <div ng-show="currentUser">Bienvenido, {{currentUser}}!</div>
+        </div>
+        <!-- /.container -->
+    </div>
+</nav>
+
 <div ng-view></div>
 
+<div class="container">
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright © PFM - Proyecto Scrum para la Universidad de Málaga 2015</p>
+            </div>
+        </div>
+        <!-- /.row -->
+    </footer>
+</div>
 <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
 -->
+<!-- -->
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="lib/angular/angular.js"></script>
 <script src="lib/angular-route/angular-route.js"></script>
 <script src="js/app.js"></script>
 <script src="js/home.js"></script>
 <script src="js/login.js"></script>
+<script src="lib/html5shiv/html5shiv.js"></script>
 <script src="components/version/version.js"></script>
 <script src="components/version/version-directive.js"></script>
 <script src="components/version/interpolate-filter.js"></script>

@@ -19,7 +19,7 @@ module.exports.bootstrap = function(cb) {
    var skills = 'Creativity, Marketing, Creative Strategy, Social Media';
        
 
-  var perfil = [{avatar:'http://mop.cv.uma.es/pluginfile.php/184003/user/icon/uma2013/f1?rev=2',email:'alumno@alumno.com',name:'Alumno', surname:'Onmula', age:45, summary:summary, education: education,experience:experience, skills: skills }];
+  var perfil = [{avatar:'https://asignaturadelengua.files.wordpress.com/2011/05/foto-carnet-traje.jpg',email:'alumno@alumno.com',name:'Alumno', surname:'Onmula', age:45, summary:summary, education: education,experience:experience, skills: skills }];
   var usuario = [{email:'alumno@alumno.com', password: 'abcde', rol:'Usuario',profile:'alumno@alumno.com',empresas:['1','2']}];
   var empresa = [{CIF:'1',name:'Empresa de alumno'},{CIF:'2',name:'Empresa de alumno2'}];
   

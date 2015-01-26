@@ -1,0 +1,64 @@
+<div class="modal-header">
+    <h3 class="modal-title">Edita tu perfil</h3>
+</div>
+<div class="modal-body">
+    <div class="form-group">
+        <label for="email">Dirección email </label>
+        <input ng-model="user.email" type="email" class="form-control" id="email" placeholder="Email">
+    </div>
+
+    <div class="form-group">
+        <label for="name">Nombre </label>
+        <input ng-model="user.name" type="text" class="form-control" id="name" placeholder="Nombre">
+    </div>
+
+    <div class="form-group">
+        <label for="surname">Apellidos </label>
+        <input ng-model="user.surname" type="text" class="form-control" id="surname" placeholder="Apellidos">
+    </div>
+
+    <div class="form-group">
+        <label for="male">Sexo</label>
+        <div class="radio">
+            <label>
+                <input type="radio" name="sexRadios" id="male" value="Male" checked>
+                Hombre
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="sexRadios" id="female" value="Female">
+                Mujer
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="age">Edad </label>
+        <input ng-model="user.age" type="number" class="form-control" id="age" placeholder="Edad">
+    </div>
+
+    <div class="form-group">
+        <label for="location">Localización </label>
+        <input ng-model="user.location" type="text" class="form-control" id="location" placeholder="Localización">
+    </div>
+
+    <div class="form-group">
+        <label for="summary">Resumen </label>
+        <input ng-model="user.summary" type="text" class="form-control" id="summary" placeholder="Resumen">
+    </div>
+
+    <div class="form-group">
+        <label for="experience">Experiencia </label>
+        <input ng-model="user.experience" type="text" class="form-control" id="experience" placeholder="Experiencia">
+    </div>
+
+    <div class="form-group">
+        <label for="skills">Habilidades </label>
+        <input ng-model="user.skills" type="text" class="form-control" id="skills" placeholder="Habilidades">
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>

@@ -5,7 +5,9 @@ angular.module('connectIn', [
     'ngRoute',
     'connectIn.version',
     'connectIn.home',
-    'connectIn.login'
+    'connectIn.login',
+    'ngStorage',
+    'ui.bootstrap'
 ])
     .constant('AUTH_EVENTS', {
         loginSuccess: 'auth-login-success',
@@ -26,6 +28,11 @@ angular.module('connectIn', [
 
     .config(['$routeProvider', 'USER_ROLES', function ($routeProvider, USER_ROLES) {
         $routeProvider
+            .when('/', {
+                templateUrl: '../pages/login.html',
+                controller: 'LoginController',
+                access: { authorizedRoles: [USER_ROLES.all] }
+            })
             .when('/login', {
                 templateUrl: '../pages/login.html',
                 controller: 'LoginController',
@@ -66,7 +73,7 @@ angular.module('connectIn', [
         });
     })
 
-    .service('Session', function () {
+    .service('Session', function ($localStorage) {
         this.create = function (sessionId, userId, userRole) {
             this.id = sessionId;
             this.userId = userId;
@@ -108,11 +115,13 @@ angular.module('connectIn', [
         return authService;
     })
 
-    .controller('LoginController', function ($scope, $rootScope, AUTH_EVENTS, USER_ROLES, AuthService) {
+    .controller('LoginController', function ($scope, $rootScope, AUTH_EVENTS, USER_ROLES, AuthService, Session, $localStorage) {
         $scope.credentials = {
             username: '',
             password: ''
         };
+
+        $scope.$session = $localStorage;
 
         $scope.currentUser = null;
         $scope.userRoles = USER_ROLES;
@@ -127,10 +136,21 @@ angular.module('connectIn', [
                 function (user) {
                     // LOGIN SUCCEEDED
                     $scope.setCurrentUser(user);
+                    $scope.setCurrentSession(Session)
                     $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
                 }, function () {
                     // LOGIN FAILED
                     $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
                 });
         };
+
+        $scope.$session = {
+            id : Session.id,
+            userId : Session.userId,
+            role : Session.userRole
+        };
+
+        $scope.setCurrentSession = function(newSession) {
+            $scope.$session = newSession;
+        }
     })

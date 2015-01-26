@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('connectIn.home', ['ngRoute'])
+angular.module('connectIn.home', ['ngRoute', 'ui.bootstrap'])
 
 
-    .controller('ProfileController', ['$scope', function ($scope) {
+    .controller('ProfileController', function ($scope, $http, Session, $modal) {
         $scope.user = {
             name: 'John',
             surname: 'Doe',
@@ -19,8 +19,53 @@ angular.module('connectIn.home', ['ngRoute'])
             avatar: 'http://yonicooperberg.com/wp-content/uploads/2014/08/John-Doe_avatar_1407830200.jpg',
         };
 
+        $http.get('usuario/' + Session.userId)
+            .then(function (res) {
+                $scope.user = res.data.profile;
+            });
+
         $scope.updateUserInfo = function (newUser) {
             $scope.user = newUser;
         };
 
+        $scope.edit = function (){
+            var modalInstance = $modal.open({
+                templateUrl: 'dialogs/edit-profile.html',
+                controller: 'EditProfileController',
+                size: 'lg',
+                backdrop: 'false',
+                resolve: {
+                    user: function () {
+                        return $scope.user;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+                $scope.selected = selectedItem;
+            }, function () {
+                // modal dismissed
+            });
+
+        };
+    })
+
+    .controller('EditProfileController', ['$scope', '$http', 'Session', '$modalInstance', 'user', function ($scope, $http, Session, $modalInstance, user) {
+
+        $scope.user = user;
+
+        $scope.ok = function(){
+            // Enviar form
+            $http.post('usuario/' + $scope.user.email, $scope.user)
+                .then(function (res) {
+                    $scope.user = res.data.profile;
+                });
+
+            // Cerrar modal
+            $modalInstance.close();
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
     }]);

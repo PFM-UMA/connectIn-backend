@@ -2,8 +2,6 @@
 
 angular.module('connectIn.login', ['ngRoute'])
 
-
-
     .controller('SignupController', function($scope, $rootScope, $http, $location, AuthService, AUTH_EVENTS, USER_ROLES   ){
         $scope.credentials = {
             username: '',

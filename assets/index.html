@@ -39,7 +39,7 @@
             <a class="navbar-brand" href="#">ConnectIN</a>
         </div>
         <div ng-controller="LoginController" class="navbar-collapse collapse" id="navbar-main">
-            <form ng-submit="login(credentials)" ng-hide="currentUser != null"
+            <form ng-submit="login(credentials)" ng-hide="$session.userId"
                   class="navbar-form navbar-right" role="search">
                 <div class="form-group">
                     <input ng-model="credentials.username" type="text" class="form-control" name="username" placeholder="Usuario">
@@ -50,7 +50,9 @@
                 <button type="submit" class="btn btn-success">Acceder</button>
                 <br>
             </form>
-            <div ng-show="currentUser">Bienvenido, {{currentUser}}!</div>
+            <div ng-show="$session.userId" class="navbar-form navbar-right welcome">
+                Bienvenido, {{$session.userId}}!
+            </div>
         </div>
         <!-- /.container -->
     </div>
@@ -77,6 +79,8 @@
 <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="lib/angular/angular.js"></script>
 <script src="lib/angular-route/angular-route.js"></script>
+<script src="lib/ngStorage/ngStorage.min.js"></script>
+<script src="lib/ui-bootstrap/ui-bootstrap.min.js"></script>
 <script src="js/app.js"></script>
 <script src="js/home.js"></script>
 <script src="js/login.js"></script>

@@ -10,22 +10,13 @@
  */
 
 module.exports.bootstrap = function(cb) {
-  var education = 
-"Columbia University in the City of New York
-Master of Business Administration (M.B.A.)
-1998 – 2004";
+  var education = 'Columbia University in the City of New York &nbsp Master of Business Administration (M.B.A.) &nbsp 1998 – 2004';
 
-  var summary = 
-"Senior level recruiting and staffing professional with expertise in information technology as well as all major disciplines specializing in contract assignments. Previous corporate experience includes Director of Staffing and HR management positions.
-Specialties:Expert recruiter in technical, management, marketing, retail, customer care, and all major disciplines
+  var summary = 'Senior level recruiting and staffing professional with expertise in information technology as well as all major disciplines specializing in contract assignments. Previous corporate experience includes Director of Staffing and HR management positions. &nbsp Specialties:Expert recruiter in technical, management, marketing, retail, customer care, and all major disciplines &nbsp Responsible for staffing merchandising, sales reps and management positions across the US';
 
-Responsible for staffing merchandising, sales reps and management positions across the US";
+   var experience = 'Senior Recruitment Officer EY &nbsp agosto de 2010 – actualidad (4 años 6 meses)';
 
-   var experience = 
-"Senior Recruitment Officer EY
-agosto de 2010 – actualidad (4 años 6 meses)";
-
-   var skills = "Creativity, Marketing, Creative Strategy, Social Media";
+   var skills = 'Creativity, Marketing, Creative Strategy, Social Media';
        
 
   var perfil = [{avatar:'http://mop.cv.uma.es/pluginfile.php/184003/user/icon/uma2013/f1?rev=2',email:'alumno@alumno.com',name:'Alumno', surname:'Onmula', age:45, summary:summary, education: education,experience:experience, skills: skills }];

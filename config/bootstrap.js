@@ -10,8 +10,25 @@
  */
 
 module.exports.bootstrap = function(cb) {
+  var education = 
+"Columbia University in the City of New York
+Master of Business Administration (M.B.A.)
+1998 – 2004";
 
-  var perfil = [{email:'alumno@alumno.com',name:'Alumno', surname:'Onmula', age:20}];
+  var summary = 
+"Senior level recruiting and staffing professional with expertise in information technology as well as all major disciplines specializing in contract assignments. Previous corporate experience includes Director of Staffing and HR management positions.
+Specialties:Expert recruiter in technical, management, marketing, retail, customer care, and all major disciplines
+
+Responsible for staffing merchandising, sales reps and management positions across the US";
+
+   var experience = 
+"Senior Recruitment Officer EY
+agosto de 2010 – actualidad (4 años 6 meses)";
+
+   var skills = "Creativity, Marketing, Creative Strategy, Social Media";
+       
+
+  var perfil = [{avatar:'http://mop.cv.uma.es/pluginfile.php/184003/user/icon/uma2013/f1?rev=2',email:'alumno@alumno.com',name:'Alumno', surname:'Onmula', age:45, summary:summary, education: education,experience:experience, skills: skills }];
   var usuario = [{email:'alumno@alumno.com', password: 'abcde', rol:'Usuario',profile:'alumno@alumno.com',empresas:['1','2']}];
   var empresa = [{CIF:'1',name:'Empresa de alumno'},{CIF:'2',name:'Empresa de alumno2'}];
   

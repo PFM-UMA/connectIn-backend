@@ -12,11 +12,11 @@ module.exports = {
   		type : 'email',
   		//unique : true,
       required:true
-  	},
+    },
 
-  	sesion_id: {
-  		type : 'string',
-  		required : true
-  	}
+    sesion_id: {
+      type : 'string',
+      required : true
+    }
   }
 };

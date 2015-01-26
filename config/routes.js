@@ -41,7 +41,6 @@ module.exports.routes = {
   'post /empresa/:CIF' : 'EmpresaController.updateOrCreate',
   'post /usuario/:email' : 'PerfilController.updateOrCreate'
   
-
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

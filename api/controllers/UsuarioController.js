@@ -50,7 +50,7 @@ module.exports = {
 		    } else {
 		      console.log('Logged in');
 		      console.log('{ id:'+user.password+',email:'+user.email+',rol:'+user.rol+'}');
-		      res.json({ id:user.password,email:user.email,rol:user.rol });
+		      res.json({ id:user.password,email:user.email,rol:user.rol, usuario:user  });
 		    }
 		   });
 		} else {
@@ -66,7 +66,29 @@ module.exports = {
 	      res.json({error:'User not found'},404);
 	    }
 	});
+	},
+	
+    signout : function (req,res) {
+      var email = req.param('email');
+      var sesion_id = req.param('sesion_id');
+      
+      console.log('LOGGING OUT');
+
+      Sesion.find({email:email,sesion_id:sesion_id}).exec(function (err, sesion) {
+	if (err) {
+	  console.log('Error on database on signout');
+	  res.json({ error:'DB error'},500);
+	} else if (sesion) {
+	  Sesion.destroy({email:email}).exec(function destroyCB (err) {
+	    if (err) {
+	      console.log('Error on signout');
+	      res.json({ error:'DB error'},500);
+	    }
+	    res.json({sesion:sesion});
+	  });
 	}
+      });
+    }
 
 };
 

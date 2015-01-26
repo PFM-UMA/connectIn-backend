@@ -34,8 +34,13 @@ module.exports.routes = {
 
   'post /signup' : 'UsuarioController.signup',
   'post /signin' : 'UsuarioController.signin',
+  'get /signout' : 'UsuarioController.signout',
+  'post /empresa/:CIF' : 'EmpresaController.updateOrCreate',
+  'post /usuario/:email' : 'PerfilController.updateOrCreate',
+  'get /profiles/:name' : 'PerfilController.finder',
   'post /empresa/:CIF' : 'EmpresaController.updateOrCreate',
   'post /usuario/:email' : 'PerfilController.updateOrCreate'
+  
 
   /***************************************************************************
   *                                                                          *

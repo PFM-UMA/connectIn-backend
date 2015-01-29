@@ -2,8 +2,7 @@
 
 angular.module('connectIn.home', ['ngRoute', 'ui.bootstrap'])
 
-
-    .controller('ProfileController', function ($scope, $http, Session, $modal) {
+    .controller('ProfileController', function ($scope, $http, $window, $modal) {
         $scope.user = {
             name: 'John',
             surname: 'Doe',
@@ -19,7 +18,7 @@ angular.module('connectIn.home', ['ngRoute', 'ui.bootstrap'])
             avatar: 'http://yonicooperberg.com/wp-content/uploads/2014/08/John-Doe_avatar_1407830200.jpg',
         };
 
-        $http.get('usuario/' + Session.userId)
+        $http.get('usuario/' + $window.sessionStorage.user)
             .then(function (res) {
                 $scope.user = res.data.profile;
             });
@@ -50,7 +49,7 @@ angular.module('connectIn.home', ['ngRoute', 'ui.bootstrap'])
         };
     })
 
-    .controller('EditProfileController', ['$scope', '$http', 'Session', '$modalInstance', 'user', function ($scope, $http, Session, $modalInstance, user) {
+    .controller('EditProfileController',  function ($scope, $http, $modalInstance, user) {
 
         $scope.user = user;
 
@@ -68,4 +67,4 @@ angular.module('connectIn.home', ['ngRoute', 'ui.bootstrap'])
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
-    }]);
+    });

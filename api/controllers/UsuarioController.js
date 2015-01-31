@@ -88,7 +88,70 @@ signout : function (req,res) {
 			});
 		}
 	});
-}
+},
 
+
+invite: function (req, res) {
+		var invitador = req.param('email');
+		var invitado = req.param('invite');
+
+		Usuario.findOne({email:invitador}).populateAll().exec(function findCB (err, usuario) {
+			var invitacion={};
+			if (usuario.profile){
+				var nombre = usuario.profile.name;
+				var avatar = usuario.profile.avatar;
+				invitacion['nombre'] = nombre;
+				invitacion['avatar'] = avatar;
+			}
+			var email = invitador;					
+			invitacion['email'] = email;
+
+			Usuario.findOne({email:invitado}).populateAll().exec(function findCB2 (err, usuario2) {				
+				if (!usuario2.invitaciones) usuario2.invitaciones=[];
+				usuario2.invitaciones.push(invitacion);//al conjunto invitaciones le añado 
+
+				Usuario.update({email:invitado},{invitaciones:usuario2.invitaciones}).exec(console.log);
+				//console.log(usuario2.invitaciones);
+			});
+		});
+	},
+
+
+acceptInvitation: function (req, res) {
+		  var invitador = req.param('email');
+		  var invitado = req.param('invite');
+
+		  Usuario.findOne({email:invitado}).populateAll().exec(function findCB (err, usuario) {
+		  	var amistad = {};
+		    if (usuario.profile) {
+		    	var nombre = usuario.profile.name;
+		    	var avatar = usuario.profile.avatar;
+
+		    	amistad['nombre'] = nombre;
+		    	amistad['avatar'] = avatar;
+		    }	
+		    var email = invitado;		    		   
+		    amistad['email'] = email;
+		    
+		    var nuevasInvitaciones=[];
+
+		    for(var i=0;i<usuario.invitaciones.length;i++) {
+		      if(usuario.invitaciones[i].email == invitador){
+		        var amigo = usuario.invitaciones[i];
+		       }else{ 
+		        nuevasInvitaciones.push(usuario.invitaciones[i]);
+		       }		        
+		    }		    
+		    //actualizar invitaciones  
+		    Usuario.findOne({email:invitador}).populateAll().exec(function findCB (err, user) {	
+		      if (!user.amigos) user.amigos =[];		      		   
+		      	user.amigos.push(amistad);
+		      	if (!usuario.amigos) usuario.amigos=[];	
+		      		usuario.amigos.push(amigo);
+		      Usuario.update({email:invitado},{invitaciones:nuevasInvitaciones,amigos:usuario.amigos}).exec(console.log);
+		      Usuario.update({email:invitador},{amigos:user.amigos}).exec(console.log);		    
+		     });
+		 });
+	},			  		    
 };
 

@@ -39,7 +39,9 @@ module.exports.routes = {
   'post /usuario/:email' : 'PerfilController.updateOrCreate',
   'get /profiles/:name' : 'PerfilController.finder',
   'post /empresa/:CIF' : 'EmpresaController.updateOrCreate',
-  'post /usuario/:email' : 'PerfilController.updateOrCreate'
+  'post /usuario/:email' : 'PerfilController.updateOrCreate',
+  'post /usuario/invite/:email/:invite' : 'UsuarioController.invite',
+  'post /usuario/acceptInvitation/:email/:invite' : 'UsuarioController.acceptInvitation'
   
   /***************************************************************************
   *                                                                          *

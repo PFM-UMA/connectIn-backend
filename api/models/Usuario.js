@@ -52,6 +52,14 @@ module.exports = {
       via: 'owner'
     },
 
+    invitaciones:{
+      type:'array'
+    },
+
+    amigos:{
+      type:'array'
+    },
+
     toJSON: function () {
       var usuario = this.toObject();
       delete usuario.password;

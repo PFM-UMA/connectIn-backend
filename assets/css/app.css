@@ -136,3 +136,18 @@ img.avatar {
 .welcome {
     color: #FFFFFF;
 }
+
+.invitacion {
+    margin: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.invitacion img {
+    height: 100px;
+    width: auto;
+}
+
+.invitacion div {
+    display: inline-block;
+}

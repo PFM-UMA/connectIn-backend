@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h3 class="modal-title">Invitaciones pendientes</h3>
+</div>
+<div class="modal-body">
+    <div ng-repeat="inv in invitaciones" class="row invitacion">
+        <img class="col-md-3 img-responsive" ng-src="{{inv.profile.avatar}}"/>
+        <div class="col-md-9">
+            <div class="col-md-6">
+                <h3>{{inv.profile.name}}</h3>
+                <h4><em>{{inv.profile.email}}</em></h4>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-primary" ng-click="accept(inv.profile.email)">Aceptar</button>
+                <button class="btn btn-danger" ng-click="refuse(inv.profile.email)">Rechazar</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" ng-click="cancel()">Volver</button>
+</div>

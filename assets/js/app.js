@@ -72,8 +72,11 @@ angular.module('connectIn', [
         });
 
         $rootScope.$on(AUTH_EVENTS.loginFailed, function (event, data) {
-            alert("Login failed");
-        });
+            new PNotify({
+                title: 'Error de identificación',
+                text: 'Usuario/contraseña no válidos.',
+                type: 'error'
+            });        });
 
         $rootScope.$on(AUTH_EVENTS.logoutSuccess, function (event, data) {
             $location.path('/');
@@ -188,7 +191,11 @@ angular.module('connectIn', [
 
         $scope.signup = function (credentials) {
             if (credentials.password != credentials.passwordVerify) {
-                alert("Las contraseñas no coinciden");
+                new PNotify({
+                    title: 'Error',
+                    text: 'Las contraseñas no coinciden.',
+                    type: 'error'
+                });
             } else {
                 $http.post('signup/', credentials)
                     .then(function (res) {

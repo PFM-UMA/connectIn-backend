@@ -2,7 +2,13 @@
 
 angular.module('connectIn.home', ['ngRoute', 'ui.bootstrap'])
 
-    .controller('ProfileController', function ($scope, $http, $window, $modal) {
+    .controller('ProfileController', function ($scope, $http, $window, $modal, $location) {
+
+        // TODO: user AuthService
+        if (!$window.sessionStorage.user){
+            $location.path('/')
+        }
+
         $scope.user = null;
         $scope.invitaciones = [];
         $scope.friends = [];

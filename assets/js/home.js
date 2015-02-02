@@ -4,12 +4,14 @@ angular.module('connectIn.home', ['ngRoute', 'ui.bootstrap'])
 
     .controller('ProfileController', function ($scope, $http, $window, $modal) {
         $scope.user = null;
-        $scope.invitaciones = null;
+        $scope.invitaciones = [];
+        $scope.friends = [];
 
         $http.get('usuario/' + $window.sessionStorage.user)
             .then(function (res) {
                 $scope.user = res.data.profile;
-                $scope.invitaciones = res.data.invitaciones
+                $scope.invitaciones = res.data.invitaciones;
+                $scope.friends = res.data.amigos;
             });
 
         $scope.updateUserInfo = function (newUser) {

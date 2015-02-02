@@ -74,23 +74,10 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <ul class="list-unstyled">
-                            <li class="row connection-profile">
-                                <div class="col-xs-3"><img class="img-responsive" src='img/sample-avatar-f.jpg'></div>
-                                <div class="col-xs-9">Jenna Douh<a href="#"></a></div>
+                            <li ng-repeat="friend in friends" class="row connection-profile">
+                                <div class="col-xs-3"><img class="img-responsive" ng-src="{{friend.avatar}}"></div>
+                                <div class="col-xs-9">{{friend.nombre}}<a href=""></a></div>
                             </li>
-                            <li class="row connection-profile">
-                                <div class="col-xs-3"><img class="img-responsive" src='img/sample-avatar-f.jpg'></div>
-                                <div class="col-xs-9">Jenna Douh<a href="#"></a></div>
-                            </li>
-                            <li class="row connection-profile">
-                                <div class="col-xs-3"><img class="img-responsive" src='img/sample-avatar-f.jpg'></div>
-                                <div class="col-xs-9">Jenna Douh<a href="#"></a></div>
-                            </li>
-                            <li class="row connection-profile">
-                                <div class="col-xs-3"><img class="img-responsive" src='img/sample-avatar-f.jpg'></div>
-                                <div class="col-xs-9">Jenna Douh<a href="#"></a></div>
-                            </li>
-
                         </ul>
                     </div>
                 </div>

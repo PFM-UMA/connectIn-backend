@@ -41,7 +41,8 @@ module.exports.routes = {
   'post /empresa/:CIF' : 'EmpresaController.updateOrCreate',
   'post /usuario/:email' : 'PerfilController.updateOrCreate',
   'post /usuario/invite/:email/:invite' : 'UsuarioController.invite',
-  'post /usuario/acceptInvitation/:email/:invite' : 'UsuarioController.acceptInvitation'
+  'post /usuario/acceptInvitation/:email/:invite' : 'UsuarioController.acceptInvitation',
+  'post /usuario/refuseInvitation/:email/:invite' : 'UsuarioController.refuseInvitation'
   
   /***************************************************************************
   *                                                                          *

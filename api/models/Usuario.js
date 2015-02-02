@@ -33,16 +33,6 @@ module.exports = {
       required : true
     },
     
-    name: {
-      type : 'string',
-      //required : true
-    },
-
-    surname: {
-      type : 'string',
-      //required : true	
-     }, 
-
     profile: {
       model:'Perfil'
     },

@@ -152,6 +152,22 @@ acceptInvitation: function (req, res) {
 		      Usuario.update({email:invitador},{amigos:user.amigos}).exec(console.log);		    
 		     });
 		 });
-	},			  		    
+	},	
+
+	refuseInvitation: function (req, res) {		  	
+		var invitador = req.param('email');
+		var invitado = req.param('invite');	    
+
+
+		Usuario.findOne({email:invitado}).populateAll().exec(function findCB (err, usuario) {
+			var nuevasInvitaciones=[];
+			for(var i=0;i<usuario.invitaciones.length;i++) {
+		      if(usuario.invitaciones[i].email != invitador){
+		        nuevasInvitaciones.push(usuario.invitaciones[i]);
+		       }		        
+		    }	
+		    Usuario.update({email:invitado},{invitaciones:nuevasInvitaciones}).exec(console.log);	
+		});
+	}
 };
 

@@ -72,8 +72,6 @@ signout : function (req,res) {
 	var email = req.param('email');
 	var sesion_id = req.param('sesion_id');
 	
-	console.log('LOGGING OUT');
-
 	Sesion.find({email:email,sesion_id:sesion_id}).exec(function (err, sesion) {
 		if (err) {
 			console.log('Error on database on signout');
@@ -96,6 +94,7 @@ invite: function (req, res) {
 		var invitado = req.param('invite');
 
 		Usuario.findOne({email:invitador}).populateAll().exec(function findCB (err, usuario) {
+			if (err) res.json({ error:'DB error'},500);
 			var invitacion={};
 			if (usuario.profile){
 				var nombre = usuario.profile.name;
@@ -107,10 +106,16 @@ invite: function (req, res) {
 			invitacion['email'] = email;
 
 			Usuario.findOne({email:invitado}).populateAll().exec(function findCB2 (err, usuario2) {				
+				if (err) res.json({ error:'DB error'},500);
+
 				if (!usuario2.invitaciones) usuario2.invitaciones=[];
 				usuario2.invitaciones.push(invitacion);//al conjunto invitaciones le añado 
 
-				Usuario.update({email:invitado},{invitaciones:usuario2.invitaciones}).exec(console.log);
+				Usuario.update({email:invitado},{invitaciones:usuario2.invitaciones}).exec(function updateCB (err, updated) {
+					if (err) res.json({ error:'DB error'},500);
+
+					res.json(updated);
+				});
 				//console.log(usuario2.invitaciones);
 			});
 		});
@@ -121,7 +126,11 @@ acceptInvitation: function (req, res) {
 		  var invitador = req.param('email');
 		  var invitado = req.param('invite');
 
-		  Usuario.findOne({email:invitado}).populateAll().exec(function findCB (err, usuario) {
+		  console.log(invitador + "/" + invitado);	
+
+		  Usuario.findOne({email:invitador}).populateAll().exec(function findCB (err, usuario) {
+		  	if (err) res.json({ error:'DB error'},500);
+
 		  	var amistad = {};
 		    if (usuario.profile) {
 		    	var nombre = usuario.profile.name;
@@ -136,37 +145,53 @@ acceptInvitation: function (req, res) {
 		    var nuevasInvitaciones=[];
 
 		    for(var i=0;i<usuario.invitaciones.length;i++) {
-		      if(usuario.invitaciones[i].email == invitador){
+		      if(usuario.invitaciones[i].email == invitado){
 		        var amigo = usuario.invitaciones[i];
 		       }else{ 
 		        nuevasInvitaciones.push(usuario.invitaciones[i]);
 		       }		        
 		    }		    
 		    //actualizar invitaciones  
-		    Usuario.findOne({email:invitador}).populateAll().exec(function findCB (err, user) {	
+		    
+		    Usuario.findOne({email:invitado}).populateAll().exec(function findCB (err, user) {	
+		      if (err) res.json({ error:'DB error'},500);
 		      if (!user.amigos) user.amigos =[];		      		   
 		      	user.amigos.push(amistad);
 		      	if (!usuario.amigos) usuario.amigos=[];	
 		      		usuario.amigos.push(amigo);
-		      Usuario.update({email:invitado},{invitaciones:nuevasInvitaciones,amigos:usuario.amigos}).exec(console.log);
-		      Usuario.update({email:invitador},{amigos:user.amigos}).exec(console.log);		    
+		      Usuario.update({email:invitador},{invitaciones:nuevasInvitaciones,amigos:usuario.amigos}).exec(function updateCB (err, updated){
+		      	if (err) res.json({ error:'DB error'},500);
+		      });
+		      Usuario.update({email:invitado},{amigos:user.amigos}).exec(function updateCB (err, updated){
+		      	if (err) res.json({ error:'DB error'},500);
+		      });
+		      res.json(user);		    
 		     });
 		 });
 	},	
 
 	refuseInvitation: function (req, res) {		  	
 		var invitador = req.param('email');
-		var invitado = req.param('invite');	    
+		var invitado = req.param('invite');
+
+		//console.log(invitador + "/" + invitado);	    
 
 
-		Usuario.findOne({email:invitado}).populateAll().exec(function findCB (err, usuario) {
+		Usuario.findOne({email:invitador}).populateAll().exec(function findCB (err, usuario) {
+			if (err) res.json({ error:'DB error'},500);
+			
 			var nuevasInvitaciones=[];
 			for(var i=0;i<usuario.invitaciones.length;i++) {
-		      if(usuario.invitaciones[i].email != invitador){
+		      if(usuario.invitaciones[i].email != invitado){
 		        nuevasInvitaciones.push(usuario.invitaciones[i]);
 		       }		        
 		    }	
-		    Usuario.update({email:invitado},{invitaciones:nuevasInvitaciones}).exec(console.log);	
+
+		    Usuario.update({email:invitador},{invitaciones:nuevasInvitaciones}).exec(function updateCB (err, updated) {
+		    	if (err) res.json({ error:'DB error'},500);
+		    	console.log(nuevasInvitaciones);
+		    	res.json(updated);
+		    });	
 		});
 	}
 };
